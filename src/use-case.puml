@@ -1,0 +1,28 @@
+@startuml use-case-diagram
+
+title
+My use case diagram
+end title
+
+' Declaration
+actor "Developer" as dev
+cloud "Production Environment" as pe
+
+rectangle "Deployment Pipeline" {
+  usecase "Continous Integration" as ci
+  usecase "Continuous Delivery" as cdi
+  usecase "Continuous Deployment" as cde
+}
+
+' Dependency
+dev -R- ci
+dev -R- cdi
+dev -R- cde
+
+pe -L- cdi : manual
+pe -L- cde : automatic
+
+cdi --> ci: <<includes>>
+cde --> cdi: <<extends>>
+
+@enduml

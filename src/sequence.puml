@@ -1,0 +1,17 @@
+@startuml sequence-diagram
+
+title
+My sequence diagram
+end title
+
+actor "Developer" as dev
+entity "GitHub" as gh
+boundary "GitHub Actions" as gha
+
+dev -> gh : Push new branch
+dev -> gh : Open PR on main
+gh -> gha : Trigger CI workflow
+gh <-- gha : Set PR status
+dev -> gh : Inspect CI result
+
+@enduml
